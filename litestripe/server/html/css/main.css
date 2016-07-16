@@ -1,0 +1,65 @@
+/* Styles for >1250px*/
+* {
+	color:rgb(245, 245, 245)
+}
+header {
+	width:100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	background-color:rgb(70, 70, 70);
+}
+
+
+.section {
+	height:300px;
+}
+
+form-item > h1,
+form-item > h2,
+form-item > h3,
+form-item > h4,
+form-item > h5 {
+	display:block;
+	width:100%;
+	text-align:center;
+	float:left;
+	
+}
+
+input[type="range"] {
+	height:155px;
+	width:100%;
+	margin: auto;
+	display:block;
+}
+
+
+/* Styles for 850-1250px*/
+@media(max-width:1250px) {
+	
+}
+
+
+/* Styles for 550-850px*/
+@media(max-width:850px) {
+	
+}
+/* Styles for <550px*/
+@media(max-width:550px) {
+	input[type="range"] {
+		height:155px;
+		width:50%;
+		display:block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
