@@ -30,8 +30,8 @@ class Litestripe(object):
 		self.blue_val = 0
 		
 	def set_color(self, color, value):
-		if value < 0 or value >= 256
-			throw ValueError("Color value must be in [0, 255]")
+		if value < 0 or value >= 256:
+			raise ValueError("Color value must be in [0, 255]")
 		
 		if color == 'red':
 			self.red_val = value
