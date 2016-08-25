@@ -44,7 +44,6 @@ class Litestripe(object):
 #		if red == green or red == blue or green == blue:
 #			raise ValueError('The pin values cannot be the same')
 		self.gpio = pigpio.pi()
-		self.set_brightness(brightness)
 		if red_pin in self.ALLOWED_PINS:
 			self.red_pin = red_pin
 		else:
@@ -63,9 +62,11 @@ class Litestripe(object):
 		self.red_val = 0
 		self.green_val = 0
 		self.blue_val = 0
+		self.set_brightness(brightness)
 		
 	def set_brightness(self, brightness):
 		self.brightness = brightness % 101
+		self.set_rgb()
 	
 	# Mod the value with 256 to make sure we don't get values which are too high
 	def set_rgb(self, red=None, green=None, blue=None):
@@ -109,7 +110,7 @@ class Litestripe(object):
 	
 	# time in seconds
 	def transition_to(self, color, duration, sleep_time=0.05):
-		if time == 0:
+		if duration == 0:
 			return self.set_color(color)
 			
 		iterations = float(duration)/sleep_time
@@ -129,6 +130,7 @@ class Litestripe(object):
 		return self.transition_to(Color(0, 0, 0), duration, sleep_time)
 	
 	def __del__(self):
+		self.set_rgb(0, 0, 0)
 		self.gpio.stop()
 		
 		
