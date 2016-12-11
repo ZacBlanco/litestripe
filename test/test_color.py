@@ -1,5 +1,5 @@
 import env
-import mock
+import unittest.mock as mock
 from litestripe.core.lite import Color
 
 def test_color_init():

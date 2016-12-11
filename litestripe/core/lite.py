@@ -64,8 +64,12 @@ class Litestripe(object):
 		self.blue_val = 0
 		self.set_brightness(brightness)
 		
-	def set_brightness(self, brightness):
-		self.brightness = brightness % 101
+	def set_brightness(self, level):
+		
+		if level > 0:
+			self.brightness = (level % 101)
+		else:
+			self.brightness = 1
 		self.set_rgb()
 	
 	# Mod the value with 256 to make sure we don't get values which are too high
@@ -130,7 +134,6 @@ class Litestripe(object):
 		return self.transition_to(Color(0, 0, 0), duration, sleep_time)
 	
 	def __del__(self):
-		self.set_rgb(0, 0, 0)
 		self.gpio.stop()
 		
 		

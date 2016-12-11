@@ -1,6 +1,8 @@
 import env
-import sys, mock, unittest
-from mock import MagicMock, patch
+import sys
+import unittest
+from unittest import mock
+from unittest.mock import MagicMock, patch
 pigs = MagicMock()
 patch.dict("sys.modules", pigpio=pigs).start()	
 from litestripe.core.lite import Litestripe, Color
@@ -9,9 +11,9 @@ class test_init(unittest.TestCase):
 
 	def test_lite_init(self):
 		l = Litestripe(17, 17, 17)
-		assert l.brightness == 100, 'Default brightness should be 100. Value was ' + str(l.brightness)
+		self.assertEqual(l.brightness == 100, True, 'Default brightness should be 100. Value was ' + str(l.brightness))
 
-		assert l.red_pin == 17
+		self.assertEqual(l.red_pin, 17)
 		assert l.green_pin == 17
 		assert l.blue_pin == 17
 
@@ -65,7 +67,7 @@ class test_init(unittest.TestCase):
 		l = Litestripe(17, 27, 22)
 		del l
 		try:
-			print l
+			print(l)
 			self.fail('Should have deleted l')
 		except UnboundLocalError as e:
 			pass
@@ -75,7 +77,7 @@ class test_init(unittest.TestCase):
 		white = Color(255.0, 255.0, 255.0)
 		l.set_color(white)
 		item = """[brightness: 100, Red Pin: 17, Green Pin: 27, Blue Pin: 22, Red Value: 255.0, Green Value: 255.0, Blue Value: 255.0]"""
-		assert str(l) == item
+		self.assertEqual(str(l), item)
 		
 		
 		
